@@ -11,6 +11,10 @@ fs.stat(path.join(__dirname, "example.js"), function(err, stats) {
       getid: {
         desc: "Gets your Discord ID",
         example: "getid"
+      },
+      eval: {
+        desc: "Only people who are Developers on the Bot can use this!",
+        example: "eval Number().isNaN('String')"
       }
     }
   };
@@ -20,5 +24,13 @@ fs.stat(path.join(__dirname, "example.js"), function(err, stats) {
 bot.on('cmd', function(cmd, args, msg, client) {
   if (cmd == "getid") {
     msg.channel.send(`Your Discord ID is **${msg.author.id}**`);
+  } else if (cmd == 'eval') {
+    if (client.developers.indexOf(msg.author.id) > -1) {
+      try {
+        msg.channel.send(`Eval:\n\`\`\`${eval(args.join(" ").replace(/(token)|(client)|(process)/ig, "dick"))}\`\`\``);
+      } catch (e) {
+        msg.channel.send(`Eval Error:\n\`\`\`${e}\`\`\``);
+      }
+    }
   }
 });

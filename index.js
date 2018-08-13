@@ -12,10 +12,11 @@ var Plugins = require('require-all')({
 });
 
 const prefix = "!";
-const token = "<PUT YOUR TOKEN HERE>"
-
+const token = "<PUT YOUR TOKEN HERE>";
+const developers = ['165372475562000385'];
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
+  client.developers = developers;
 });
 
 
