@@ -19,6 +19,6 @@ fs.stat(path.join(__dirname, "ping.js"), function(err, stats) {
 
 bot.on('cmd', function(cmd, args, msg, client) {
   if (cmd == "ping") {
-    msg.reply('Pong!');
+    msg.channel.send('Pong!');
   }
 });

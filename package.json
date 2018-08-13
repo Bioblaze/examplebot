@@ -9,6 +9,7 @@
   "author": "Bioblaze Payne <BioblazePayne@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^11.4.1"
+    "discord.js": "^11.4.1",
+    "require-all": "^3.0.0"
   }
 }

@@ -1,7 +1,15 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
+const path = require('path');
+
 const router = require('./plugins/modules/router');
+
+var Plugins = require('require-all')({
+  dirname: path.join(__dirname, 'plugins'),
+  excludeDirs: /^\.(modules|classes|data)$/,
+  filter: /^.+\.js$/
+});
 
 const prefix = "!";
 const token = "<PUT YOUR TOKEN HERE>"

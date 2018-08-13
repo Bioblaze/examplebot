@@ -19,6 +19,6 @@ fs.stat(path.join(__dirname, "example.js"), function(err, stats) {
 
 bot.on('cmd', function(cmd, args, msg, client) {
   if (cmd == "getid") {
-    msg.reply(`Your Discord ID is **${msg.author.id}**`);
+    msg.channel.send(`Your Discord ID is **${msg.author.id}**`);
   }
 });
