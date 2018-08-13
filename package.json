@@ -1,0 +1,14 @@
+{
+  "name": "examplebot",
+  "version": "1.0.0",
+  "description": "Example of How to utilize the 'Bioblaze Payne' Style of Discord Bot Programming using Discord.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bioblaze Payne <BioblazePayne@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.4.1"
+  }
+}
