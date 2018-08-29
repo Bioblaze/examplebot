@@ -33,7 +33,8 @@ var _settings = {
 bot.on('cmd', function(cmd, args, msg, client) {
   if (cmd == "process") {
     if (msg.attachments.size > 0) {
-      request(msg.attachments[0].url, function(err, res, body) {
+      var _attachments = msg.attachments.array();
+      request(_attachments[0].url, function(err, res, body) {
         if (!err) {
           Tesseract.recognize(body).then(function(data) {
             msg.channel.send("Image 2 Text: " + data);
