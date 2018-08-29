@@ -34,7 +34,12 @@ bot.on('cmd', function(cmd, args, msg, client) {
   if (cmd == "process") {
     if (msg.attachments.size > 0) {
       var _attachments = msg.attachments.array();
-      request(_attachments[0].url, function(err, res, body) {
+      var _options = {
+        url: _attachments[0].url,
+        method: "GET",
+        encoding: null
+      };
+      request(_options, function(err, res, body) {
         if (!err) {
           Tesseract.recognize(body).then(function(data) {
             msg.channel.send("Image 2 Text: " + data);
@@ -51,7 +56,12 @@ bot.on('cmd', function(cmd, args, msg, client) {
       if (msg.channel.id == _settings.channel) {
         if (msg.attachments.size > 0) {
           var _attachments = msg.attachments.array();
-          request(_attachments[0].url, function(err, res, body) {
+          var _options = {
+            url: _attachments[0].url,
+            method: "GET",
+            encoding: null
+          };
+          request(_options, function(err, res, body) {
             if (!err) {
               Tesseract.recognize(body).then(function(data) {
                 if (_settings.chars.some(c => { return data.indexOf(c) > -1; })) {
