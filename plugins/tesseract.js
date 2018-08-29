@@ -48,8 +48,8 @@ bot.on('cmd', function(cmd, args, msg, client) {
       };
       request(_options, function(err, res, body) {
         if (!err) {
-          Tesseract.recognize(body, { lang: 'eng' }).then(function(data) {
-            msg.channel.send("Image 2 Text: " + data);
+          Tesseract.recognize(body, { lang: path.resolve(__dirname, 'langs/eng') }).then(function(data) {
+            msg.channel.send("Image 2 Text: " + data.text);
           }).catch(function(err) {
             msg.channel.send("There was a Error Decyphering your Image: " + err);
           });
@@ -70,8 +70,8 @@ bot.on('cmd', function(cmd, args, msg, client) {
           };
           request(_options, function(err, res, body) {
             if (!err) {
-              Tesseract.recognize(body, { lang: 'eng' }).then(function(data) {
-                if (_settings.chars.some(c => { return data.indexOf(c) > -1; })) {
+              Tesseract.recognize(body, { lang: path.resolve(__dirname, 'langs/eng') }).then(function(data) {
+                if (_settings.chars.some(c => { return data.text.indexOf(c) > -1; })) {
                   msg.member.addRole(_settings.role);
                   msg.channel.send("Here is your Role!");
                 } else {
