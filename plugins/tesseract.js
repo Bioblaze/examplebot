@@ -22,7 +22,7 @@ fs.stat(path.join(__dirname, "example.js"), function(err, stats) {
 });
 
 var Tesseract = require('tesseract.js');
-var request = require('request');
+var request = require('request').defaults({ encoding: null });
 var _settings = {
   chars: ['$'], // Change THIS!
   server: "1341234123434123", // Change This
