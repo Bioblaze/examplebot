@@ -21,8 +21,16 @@ fs.stat(path.join(__dirname, "example.js"), function(err, stats) {
   bot.emit('help', help);
 });
 
-var Tesseract = require('tesseract.js');
+var _Tesseract = require('tesseract.js');
 var request = require('request').defaults({ encoding: null });
+var path = require('path');
+
+var Tesseract = _Tesseract.create({
+  workerPath: path.join(__dirname, '../node_modules', 'tesseract.js/src/node/worker.js'),
+  langPath: path.join(__dirname, 'langs/'),
+  corePath: path.join(__dirname, '../node_modules', 'tesseract.js/src/node/index.js')
+});
+
 var _settings = {
   chars: ['$'], // Change THIS!
   server: "1341234123434123", // Change This
