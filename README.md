@@ -5,6 +5,6 @@ This is a Example Discord.js Bot, utilizing the 'Bioblaze Payne' Style of Bot En
 
 ## Plugins
 <dl>
-  <dt>Name: Tesseract.js Requested by: Keylon#0001</dt>
+  <dt>Name: Tesseract.js Requested by: Keylon#0001 </dt>
   <dd>Description: Scans a Image for a Set of Characters in English, then Gives them a Role!</dd>
 </dl>
