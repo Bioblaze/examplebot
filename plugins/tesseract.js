@@ -26,6 +26,7 @@ var request = require('request');
 var _settings = {
   chars: ['$'], // Change THIS!
   server: "1341234123434123", // Change This
+  channel: "123412341234124", // Change This
   role: "1234123412341234" // Change This
 };
 
@@ -46,23 +47,26 @@ bot.on('cmd', function(cmd, args, msg, client) {
     }
   } else if (cmd == 'getrole') {
     if (msg.guild.id == _settings.server) {
-      if (msg.attachments.size > 0) {
-        request(msg.attachments[0].url, function(err, res, body) {
-          if (!err) {
-            Tesseract.recognize(body).then(function(data) {
-              if (_settings.chars.some(c => { return data.indexOf(c) > -1; })) {
-                msg.member.addRole(_settings.role);
-                msg.channel.send("Here is your Role!");
-              } else {
-                msg.channel.send("Sorry but I couldnt find any Characters from my List! Please make sure it contains one of the Following: " + _settings.chars.join(","));
-              }
-            }).catch(function(err) {
-              msg.channel.send("There was a Error Decyphering your Image: " + err);
-            });
-          } else {
-            msg.channel.send("There was a Error during the request: " + err);
-          }
-        });
+      if (msg.channel.id == _settings.channel) {
+        if (msg.attachments.size > 0) {
+          var _attachments = msg.attachments.array();
+          request(_attachments[0].url, function(err, res, body) {
+            if (!err) {
+              Tesseract.recognize(body).then(function(data) {
+                if (_settings.chars.some(c => { return data.indexOf(c) > -1; })) {
+                  msg.member.addRole(_settings.role);
+                  msg.channel.send("Here is your Role!");
+                } else {
+                  msg.channel.send("Sorry but I couldnt find any Characters from my List! Please make sure it contains one of the Following: " + _settings.chars.join(","));
+                }
+              }).catch(function(err) {
+                msg.channel.send("There was a Error Decyphering your Image: " + err);
+              });
+            } else {
+              msg.channel.send("There was a Error during the request: " + err);
+            }
+          });
+        }
       }
     }
   }
